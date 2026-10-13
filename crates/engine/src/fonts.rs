@@ -21,7 +21,7 @@ pub fn missing_fonts(p: &Presentation) -> Vec<String> {
 }
 
 /// The families the slides' text runs and bullets are drawn in.
-fn used_fonts(p: &Presentation) -> Vec<String> {
+pub fn used_fonts(p: &Presentation) -> Vec<String> {
     let mut out: Vec<String> = Vec::new();
     let mut add = |f: String| {
         let f = f.trim().to_string();

@@ -299,4 +299,15 @@ mod tests {
             assert_eq!(db.face("Calibri", "Bold").family, "Carlito");
         }
     }
+
+    #[test]
+    fn web_catalog_registration() {
+        let db = FontDb::with_font_dirs(Vec::new());
+        assert!(!db.web_catalog_loaded());
+        assert!(!db.has_family("CustomWebFont"));
+        db.register_web_families(vec!["CustomWebFont".to_string()]);
+        assert!(db.web_catalog_loaded());
+        assert!(db.has_family("CustomWebFont"));
+        assert!(db.families().iter().any(|f| f == "CustomWebFont"));
+    }
 }
